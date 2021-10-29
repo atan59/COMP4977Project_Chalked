@@ -11,6 +11,7 @@
 		791A4B84271A34E00034F481 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791A4B83271A34E00034F481 /* ContentView.swift */; };
 		791A4B86271A34E10034F481 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 791A4B85271A34E10034F481 /* Assets.xcassets */; };
 		791A4B89271A34E10034F481 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 791A4B88271A34E10034F481 /* Preview Assets.xcassets */; };
+		BAD60A3F272CA113001F4889 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD60A3E272CA113001F4889 /* Clock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		791A4B83271A34E00034F481 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		791A4B85271A34E10034F481 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		791A4B88271A34E10034F481 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BAD60A3E272CA113001F4889 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 		791A4B80271A34E00034F481 /* Chalked_Quiz_Game */ = {
 			isa = PBXGroup;
 			children = (
+				BAD60A3B272CA0E8001F4889 /* Models */,
 				791A4B81271A34E00034F481 /* Chalked_Quiz_GameApp.swift */,
 				791A4B83271A34E00034F481 /* ContentView.swift */,
 				791A4B85271A34E10034F481 /* Assets.xcassets */,
@@ -65,6 +68,14 @@
 				791A4B88271A34E10034F481 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BAD60A3B272CA0E8001F4889 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BAD60A3E272CA113001F4889 /* Clock.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAD60A3F272CA113001F4889 /* Clock.swift in Sources */,
 				791A4B84271A34E00034F481 /* ContentView.swift in Sources */,
 				791A4B82271A34E00034F481 /* Chalked_Quiz_GameApp.swift in Sources */,
 			);
