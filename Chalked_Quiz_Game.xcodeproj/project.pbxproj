@@ -12,6 +12,7 @@
 		791A4B86271A34E10034F481 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 791A4B85271A34E10034F481 /* Assets.xcassets */; };
 		791A4B89271A34E10034F481 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 791A4B88271A34E10034F481 /* Preview Assets.xcassets */; };
 		BAD60A3F272CA113001F4889 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD60A3E272CA113001F4889 /* Clock.swift */; };
+		BAD60A41272CA613001F4889 /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD60A40272CA613001F4889 /* Questions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		791A4B85271A34E10034F481 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		791A4B88271A34E10034F481 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BAD60A3E272CA113001F4889 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
+		BAD60A40272CA613001F4889 /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				BAD60A3E272CA113001F4889 /* Clock.swift */,
+				BAD60A40272CA613001F4889 /* Questions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAD60A3F272CA113001F4889 /* Clock.swift in Sources */,
+				BAD60A41272CA613001F4889 /* Questions.swift in Sources */,
 				791A4B84271A34E00034F481 /* ContentView.swift in Sources */,
 				791A4B82271A34E00034F481 /* Chalked_Quiz_GameApp.swift in Sources */,
 			);
