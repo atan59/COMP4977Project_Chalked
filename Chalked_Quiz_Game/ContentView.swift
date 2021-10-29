@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var questions = [Question]()
+    
     var body: some View {
         VStack {
             Text("What does HTML stand for?")
@@ -38,6 +40,11 @@ struct ContentView: View {
             }
             .font(.system(size: 23))
             Spacer()
+        }
+        .onAppear() {
+            Api().loadData { (questions) in
+                self.questions = questions
+            }
         }
     }
 }
