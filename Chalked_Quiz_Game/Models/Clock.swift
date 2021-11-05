@@ -18,7 +18,7 @@ struct Clock: View {
     var body: some View {
         VStack {
             Text(counterToMinutes())
-                .font(.custom("Avenir Next", size: 60))
+                .font(.custom("Avenir Next", size: 20))
                 .fontWeight(.black)
         }
     }
@@ -40,18 +40,18 @@ struct ProgressBar: View {
     var body: some View {
         Circle()
             .fill(Color.clear)
-            .frame(width: 250, height: 250)
+            .frame(width: 75, height: 75)
             .overlay(
                 Circle().trim(from:0, to: progress())
                     .stroke(
                         style: StrokeStyle(
-                            lineWidth: 15,
+                            lineWidth: 10,
                             lineCap: .round,
                             lineJoin:.round
                         )
                 )
                     .foregroundColor(
-                        (completed() ? Color.green : Color.orange)
+                        (completed() ? Color.red : Color.green)
                 ).animation(
                     .easeInOut(duration: 0.2)
                 )
@@ -71,9 +71,9 @@ struct ProgressTrack: View {
     var body: some View {
         Circle()
             .fill(Color.clear)
-            .frame(width: 250, height: 250)
+            .frame(width: 75, height: 75)
             .overlay(
-                Circle().stroke(Color.black, lineWidth: 15)
+                Circle().stroke(Color.black, lineWidth: 10)
         )
     }
 }

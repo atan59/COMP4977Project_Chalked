@@ -68,7 +68,7 @@ struct RemoteImage: View {
 
 struct RemoteImage_Previews: PreviewProvider {
     static var previews: some View {
-        RemoteImage(url: "https://avatars.githubusercontent.com/u/98681?v=4")
+        RemoteImage(url: "https://api4all.azurewebsites.net/images/flintstone/fred.png")
             .aspectRatio(contentMode: .fit)
             .frame(width: 200, height: 200)
     }

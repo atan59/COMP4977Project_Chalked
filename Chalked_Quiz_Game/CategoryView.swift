@@ -15,14 +15,19 @@ struct CategoryView: View {
     let data = (1...12)
     
     var body: some View {
-        ScrollView {
+        ScrollView(.vertical) {
             VStack {
-                Text("Choose a Category")
+                Text("CHOOSE A CATEGORY")
+                    .font(.title)
+                    .fontWeight(.bold)
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(data, id:\.self) {_text in
-                        RemoteImage(url: "https://avatars.githubusercontent.com/u/98681?v=4")
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 130, height: 130)
+                        NavigationLink(destination: QuizBeginView()) {
+                            RemoteImage(url: "https://api4all.azurewebsites.net/images/flintstone/fred.png")
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 130, height: 130)
+                        }
+                        .navigationBarHidden(true)
                     }
                 }
                 .padding()
