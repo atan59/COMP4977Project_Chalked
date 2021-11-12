@@ -16,7 +16,7 @@ struct QuizQuestionsView: View {
     var currentScore: Int = 0
     
     let answerColumns = [
-        GridItem(.adaptive(minimum: 100))
+        GridItem(.adaptive(minimum: 150))
     ]
     let lifelineColumns = [
         GridItem(.adaptive(minimum: 90))
@@ -65,13 +65,9 @@ struct QuizQuestionsView: View {
             .padding()
             Text("\(currentScore)")
             VStack {
-                Spacer()
-                
                 if let question = randomQuestion {
                     Text("\(question.question)")
                 }
-                
-                Spacer()
             }
             .onAppear() {
                 Api().loadData { questions in
@@ -80,11 +76,13 @@ struct QuizQuestionsView: View {
                     answers = getAnswers(question: randomQuestion!)
                 }
             }
-            LazyVGrid(columns: answerColumns, spacing: 20) {
+            
+            LazyVGrid(columns: answerColumns, spacing: 10) {
                 ForEach(answers, id:\.self) { answer in
                     NavigationLink(destination: ScoreView(score: 7000, correctAnswers: 7, totalAnswers: 10)) {
                         Text("\(answer)")
-                            .frame(width: 200, height: 50)
+                            .padding()
+                            .frame(width: 175)
                             .foregroundColor(Color.white)
                             .background(Color.gray)
                     }
