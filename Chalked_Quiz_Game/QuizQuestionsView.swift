@@ -90,10 +90,9 @@ import SwiftUI
 
 struct QuizQuestionsView: View {
     @State var questions = [Question]()
+    @State var randomQuestion: Question?
     
     var currentScore: Int = 0
-    
-    var randomQuestion: Question?
     
     let answerColumns = [
         GridItem(.adaptive(minimum: 100))
@@ -135,14 +134,14 @@ struct QuizQuestionsView: View {
             .padding()
             Text("\(currentScore)")
             VStack {
-                if !questions.isEmpty {
-                    let randomQuestion = questions.randomElement()!
-                    Text("\(randomQuestion.question)")
+                if let question = randomQuestion {
+                    Text("\(question.question)")
                 }
             }
             .onAppear() {
                 Api().loadData { questions in
                     self.questions = questions
+                    randomQuestion = questions.randomElement()!
                 }
             }
             LazyVGrid(columns: answerColumns, spacing: 20) {
