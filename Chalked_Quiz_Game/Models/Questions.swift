@@ -56,7 +56,7 @@ class Api : ObservableObject{
         }
         URLSession.shared.dataTask(with: url) { data, response, error in
             let questions = try! JSONDecoder().decode([Question].self, from: data!)
-            print(questions)
+//            print(questions)
             DispatchQueue.main.async {
                 completion(questions)
             }

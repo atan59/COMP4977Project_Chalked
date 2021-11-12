@@ -14,7 +14,7 @@ struct TitleView: View {
                 .clipShape(Circle())
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 200, height: 200)
-            Text("GAME TITLE")
+            Text("Who Wants To Be A Programmer?")
                 .font(.largeTitle)
                 .fontWeight(.bold)
             NavigationLink(destination: CategoryView()) {

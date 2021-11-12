@@ -7,13 +7,70 @@
 
 import SwiftUI
 
+//struct CategoryView: View {
+//    let categories = [
+//        "Linux",
+//        "BASH",
+//        "PHP",
+//        "Docker",
+//        "HTML",
+//        "MySQL",
+//        "WordPress",
+//        "Laravel",
+//        "Kubernetes",
+//        "JavaScript",
+//        "DevOps"
+//    ]
+//
+//    let columns = [
+//        GridItem(.adaptive(minimum: 100))
+//    ]
+//
+//    let data = (1...12)
+//
+//    var body: some View {
+//        ScrollView(.vertical) {
+//            VStack {
+//                Text("CHOOSE A CATEGORY")
+//                    .font(.title)
+//                    .fontWeight(.bold)
+//                LazyVGrid(columns: columns, spacing: 20) {
+//                    ForEach(data, id:\.self) {_text in
+//                        NavigationLink(destination: QuizBeginView()) {
+//                            RemoteImage(url: "https://api4all.azurewebsites.net/images/flintstone/fred.png")
+//                                .aspectRatio(contentMode: .fit)
+//                                .frame(width: 130, height: 130)
+//                        }
+//                        .navigationBarHidden(true)
+//                    }
+//                }
+//                .padding()
+//            }
+//        }
+//    }
+//}
+
 struct CategoryView: View {
+    let categories = [
+        "Linux",
+        "BASH",
+        "PHP",
+        "Docker",
+        "HTML",
+        "MySQL",
+        "WordPress",
+        "Laravel",
+        "Kubernetes",
+        "JavaScript",
+        "DevOps"
+    ]
+
     let columns = [
         GridItem(.adaptive(minimum: 100))
     ]
-    
+
     let data = (1...12)
-    
+
     var body: some View {
         ScrollView(.vertical) {
             VStack {
@@ -21,13 +78,8 @@ struct CategoryView: View {
                     .font(.title)
                     .fontWeight(.bold)
                 LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(data, id:\.self) {_text in
-                        NavigationLink(destination: QuizBeginView()) {
-                            RemoteImage(url: "https://api4all.azurewebsites.net/images/flintstone/fred.png")
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 130, height: 130)
-                        }
-                        .navigationBarHidden(true)
+                    ForEach(categories, id: \.self) {
+                        category in NavigationLink("\(category)", destination: QuizBeginView())
                     }
                 }
                 .padding()
