@@ -18,12 +18,10 @@ struct TitleView: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
             NavigationLink(destination: CategoryView()) {
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                    Text("START")
-                }
-                .frame(width: 250, height: 50)
-                .foregroundColor(Color.white)
-                .background(Color.gray)
+                Text("START")
+                    .frame(width: 250, height: 50)
+                    .foregroundColor(Color.white)
+                    .background(Color.gray)
             }
             .navigationBarHidden(true)
         }

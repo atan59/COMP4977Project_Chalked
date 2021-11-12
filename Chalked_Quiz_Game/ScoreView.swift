@@ -32,24 +32,20 @@ struct ScoreView: View {
             .background(Color.gray)
             HStack{
                 NavigationLink(destination: TitleView()) {
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                        Text("Home")
-                            .fontWeight(.bold)
-                    }
-                    .frame(width: 60, height: 50)
-                    .foregroundColor(Color.white)
-                    .background(Color.gray)
-                    .padding(.trailing)
+                    Text("Home")
+                        .fontWeight(.bold)
+                        .frame(width: 60, height: 50)
+                        .foregroundColor(Color.white)
+                        .background(Color.gray)
+                        .padding(.trailing)
                 }
                 .navigationBarHidden(true)
                 NavigationLink(destination: CategoryView()) {
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                        Text("PLAY AGAIN?")
-                            .fontWeight(.bold)
-                    }
-                    .frame(width: 165, height: 50)
-                    .foregroundColor(Color.white)
-                    .background(Color.gray)
+                    Text("PLAY AGAIN?")
+                        .fontWeight(.bold)
+                        .frame(width: 165, height: 50)
+                        .foregroundColor(Color.white)
+                        .background(Color.gray)
                 }
                 .navigationBarHidden(true)
             }

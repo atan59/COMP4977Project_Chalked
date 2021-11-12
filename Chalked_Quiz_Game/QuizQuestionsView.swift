@@ -110,12 +110,10 @@ struct QuizQuestionsView: View {
     var body: some View {
         VStack {
             HStack {
-                Button(action: {}) {
-                    Text("QUIT")
-                }
-                .frame(width: 100, height: 30)
-                .foregroundColor(Color.white)
-                .background(Color.gray)
+                Text("QUIT")
+                    .frame(width: 100, height: 30)
+                    .foregroundColor(Color.white)
+                    .background(Color.gray)
                 Spacer()
                 VStack{
                     ZStack{
@@ -147,12 +145,10 @@ struct QuizQuestionsView: View {
             LazyVGrid(columns: answerColumns, spacing: 20) {
                 ForEach(answerData, id:\.self) {_text in
                     NavigationLink(destination: ScoreView(score: 7000, correctAnswers: 7, totalAnswers: 10)) {
-                        Button(action: {}) {
-                            Text("ANSWER")
-                        }
-                        .frame(width: 100, height: 30)
-                        .foregroundColor(Color.white)
-                        .background(Color.gray)
+                        Text("ANSWER")
+                            .frame(width: 100, height: 30)
+                            .foregroundColor(Color.white)
+                            .background(Color.gray)
                     }
                     .navigationBarHidden(true)
                 }
@@ -162,12 +158,10 @@ struct QuizQuestionsView: View {
                 LazyVGrid(columns: lifelineColumns, spacing: 20) {
                     ForEach(lifelineData, id:\.self) {_text in
                         NavigationLink(destination: ScoreView(score: 7000, correctAnswers: 7, totalAnswers: 10)) {
-                            Button(action: {}) {
-                                Text("LIFELINE")
-                            }
-                            .frame(width: 90, height: 30)
-                            .foregroundColor(Color.white)
-                            .background(Color.gray)
+                            Text("LIFELINE")
+                                .frame(width: 90, height: 30)
+                                .foregroundColor(Color.white)
+                                .background(Color.gray)
                         }
                         .navigationBarHidden(true)
                     }
