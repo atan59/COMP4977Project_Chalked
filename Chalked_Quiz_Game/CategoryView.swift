@@ -79,7 +79,7 @@ struct CategoryView: View {
                     .fontWeight(.bold)
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(categories, id: \.self) {
-                        category in NavigationLink("\(category)", destination: QuizBeginView())
+                        category in NavigationLink("\(category)", destination: QuizBeginView(categoryName: "\(category)"))
                     }
                 }
                 .padding()

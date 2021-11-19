@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct QuizBeginView: View {
+    let categoryName : String
     var body: some View {
         VStack {
-            Text("CATEGORY")
+            Text("\(categoryName)")
                 .font(.largeTitle)
                 .fontWeight(.bold)
             RemoteImage(url: "https://api4all.azurewebsites.net/images/flintstone/fred.png")
@@ -30,6 +31,6 @@ struct QuizBeginView: View {
 
 struct QuizBeginView_Previews: PreviewProvider {
     static var previews: some View {
-        QuizBeginView()
+        QuizBeginView(categoryName: "Linux")
     }
 }

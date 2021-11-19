@@ -43,10 +43,13 @@ struct QuizQuestionsView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("QUIT")
-                    .frame(width: 100, height: 30)
-                    .foregroundColor(Color.white)
-                    .background(Color.gray)
+                NavigationLink(destination: CategoryView()) {
+                    Text("QUIT")
+                        .frame(width: 100, height: 30)
+                        .foregroundColor(Color.white)
+                        .background(Color.gray)
+                }
+
                 Spacer()
                 VStack{
                     ZStack{
