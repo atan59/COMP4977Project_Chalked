@@ -64,7 +64,7 @@ class Api : ObservableObject{
     }
     
     func getQuestionsByCategory(category: String, completion:@escaping ([Question]) -> ()) {
-        guard let url = URL(string: "https://quizapi.io/api/v1/questions?apiKey=\(apiKey)&category=\(category)") else {
+        guard let url = URL(string: "https://quizapi.io/api/v1/questions?apiKey=\(apiKey)&tags=\(category)") else {
             print("Invalid url...")
             return
         }
