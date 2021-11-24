@@ -11,6 +11,7 @@ struct QuizQuestionsView: View {
     @State var questions = [Question]()
     @State var randomQuestion: Question?
     @State var answers: [String]
+    var categoryName: String
     
     
     var currentScore: Int = 0
@@ -73,7 +74,7 @@ struct QuizQuestionsView: View {
                 }
             }
             .onAppear() {
-                Api().loadData { questions in
+                Api().getQuestionsByCategory(category: categoryName) { questions in
                     self.questions = questions
                     randomQuestion = questions.randomElement()!
                     answers = getAnswers(question: randomQuestion!)
@@ -113,6 +114,6 @@ struct QuizQuestionsView: View {
 
 struct QuizQuestionsView_Previews: PreviewProvider {
     static var previews: some View {
-        QuizQuestionsView(answers: [])
+        QuizQuestionsView(answers: [], categoryName: "Linux")
     }
 }

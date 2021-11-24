@@ -17,7 +17,7 @@ struct QuizBeginView: View {
             RemoteImage(url: "https://api4all.azurewebsites.net/images/flintstone/fred.png")
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 250, height: 250)
-            NavigationLink(destination: QuizQuestionsView(answers: [])) {
+            NavigationLink(destination: QuizQuestionsView(answers: [], categoryName: categoryName)) {
                 Text("Begin Quiz")
                     .frame(width: 250, height: 50)
                     .foregroundColor(Color.white)

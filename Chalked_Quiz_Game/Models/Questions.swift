@@ -49,8 +49,22 @@ class Api : ObservableObject{
     
     let apiKey = "3irkYEaVgYMh7aKY5CXEkczetHAnJGf8PMLqNi7h"
     
-    func loadData(completion:@escaping ([Question]) -> ()) {
+    func getAllQuestions(completion:@escaping ([Question]) -> ()) {
         guard let url = URL(string: "https://quizapi.io/api/v1/questions?apiKey=\(apiKey)") else {
+            print("Invalid url...")
+            return
+        }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            let questions = try! JSONDecoder().decode([Question].self, from: data!)
+//            print(questions)
+            DispatchQueue.main.async {
+                completion(questions)
+            }
+        }.resume()
+    }
+    
+    func getQuestionsByCategory(category: String, completion:@escaping ([Question]) -> ()) {
+        guard let url = URL(string: "https://quizapi.io/api/v1/questions?apiKey=\(apiKey)&category=\(category)") else {
             print("Invalid url...")
             return
         }
