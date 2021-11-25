@@ -35,10 +35,14 @@ struct QuizQuestionsView: View {
                     HStack {
                         NavigationLink(destination: CategoryView()) {
                             Text("QUIT")
-                                .frame(width: 100, height: 30)
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .frame(width: 100, height: 60)
                                 .foregroundColor(Color.white)
-                                .background(Color.gray)
+                                .background(Color(red: 72 / 255, green: 169 / 255, blue: 166 / 255))
+                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                         }
+                        .navigationBarHidden(true)
                         
                         Spacer()
                         VStack{
@@ -57,9 +61,15 @@ struct QuizQuestionsView: View {
                     }
                     .padding()
                     Text(verbatim: "\(currentScore)")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255))
                     VStack {
                         if let question = randomQuestion {
                             Text("\(question.question)")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .foregroundColor(Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255))
                         }
                     }
                     .onAppear() {
@@ -71,6 +81,7 @@ struct QuizQuestionsView: View {
                         print(questions)
                         answers = getAnswers(question: randomQuestion!)
                     }
+                    .padding()
                     
                     LazyVGrid(columns: answerColumns, spacing: 10) {
                         ForEach(answers.sorted(by: >), id:\.key) { answer, correct in
@@ -81,34 +92,24 @@ struct QuizQuestionsView: View {
                                 }
                             }) {
                                 Text("\(answer)")
-                                    .padding()
-                                    .frame(width: 175)
+                                    .fontWeight(.bold)
+                                    .frame(minWidth: 175, minHeight: 100)
                                     .foregroundColor(Color.white)
-                                    .background(Color.gray)
+                                    .background(Color(red: 72 / 255, green: 169 / 255, blue: 166 / 255))
+                                    .padding()
                             }
                             .navigationBarHidden(true)
                         }
                     }
                     .padding()
-                    HStack {
-                        LazyVGrid(columns: lifelineColumns, spacing: 20) {
-                            ForEach(lifelineData, id:\.self) {_text in
-                                NavigationLink(destination: ScoreView(score: $currentScore, correctAnswerCount: $correctAnswerCount, totalAnswers: 10)) {
-                                    Text("LIFELINE")
-                                        .frame(width: 90, height: 30)
-                                        .foregroundColor(Color.white)
-                                        .background(Color.gray)
-                                }
-                                .navigationBarHidden(true)
-                            }
-                        }
-                        .padding()
-                    }
                 }
             } else {
                 ScoreView(score: $currentScore, correctAnswerCount: $correctAnswerCount, totalAnswers: 10)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color(red: 184 / 255, green: 225 / 255, blue: 255 / 255))
+        .edgesIgnoringSafeArea([.top, .bottom])
     }
 }
 

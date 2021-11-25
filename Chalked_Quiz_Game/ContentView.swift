@@ -14,41 +14,6 @@ struct ContentView: View {
         NavigationView {
             TitleView()
         }
-//        VStack {
-//            Text("What does HTML stand for?")
-//                .foregroundColor(.black)
-//                .padding(.top)
-//                .font(.system(size: 30))
-//            Spacer()
-//            VStack {
-//                Button("Hypertext Markup Language") {
-//
-//                }
-//                .padding(10)
-//
-//                Button("Hypertext Makeup Language") {
-//
-//                }
-//                .padding(5)
-//
-//                Button("HyperMark Text Language") {
-//
-//                }
-//                .padding(5)
-//
-//                Button("Hypertext Mandatory Language") {
-//
-//                }
-//                .padding(5)
-//            }
-//            .font(.system(size: 23))
-//            Spacer()
-//        }
-//        .onAppear() {
-//            Api().loadData { (questions) in
-//                self.questions = questions
-//            }
-//        }
     }
 }
 
