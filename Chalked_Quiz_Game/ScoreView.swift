@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ScoreView: View {
-    var score: Int
-    var correctAnswers: Int
+    @Binding var score: Int
+    @Binding var correctAnswerCount: Int
     var totalAnswers: Int
     
     var body: some View {
@@ -25,7 +25,7 @@ struct ScoreView: View {
                 Text("CORRECT ANSWERS")
                     .fontWeight(.bold)
                     .padding(.top)
-                Text(String(correctAnswers) + "/" + String(totalAnswers))
+                Text(String(correctAnswerCount) + "/" + String(totalAnswers))
             }
             .frame(width: 250, height: 250)
             .foregroundColor(Color.white)
@@ -56,6 +56,6 @@ struct ScoreView: View {
 
 struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreView(score: 1000, correctAnswers: 5, totalAnswers: 10)
+        ScoreView(score: .constant(1000), correctAnswerCount: .constant(1), totalAnswers: 10)
     }
 }

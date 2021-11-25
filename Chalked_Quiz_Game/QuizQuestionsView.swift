@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct QuizQuestionsView: View {
-    @State var questions = [Question]()
+    @Binding var questions: [Question]
     @State var randomQuestion: Question?
-    @State var answers: [String]
-    var categoryName: String
-    
-    
-    var currentScore: Int = 0
+    @State var answers = [String:String]()
+    @Binding var isDone: Bool
+    @Binding var currentScore: Int
+    @Binding var correctAnswerCount: Int
     
     let answerColumns = [
         GridItem(.adaptive(minimum: 150))
@@ -29,91 +28,93 @@ struct QuizQuestionsView: View {
     @State var counter: Int = 0
     var countTo: Int = 30
     
-    func getAnswers(question: Question) -> [String] {
-        var answers: [String] = []
-        let mirror = Mirror(reflecting: question.answers)
-        
-        for (_, child) in mirror.children.enumerated() {
-            if let val = child.value as? String {
-                answers.append(val)
-            }
-        }
-        return answers
-    }
-    
     var body: some View {
-        VStack {
-            HStack {
-                NavigationLink(destination: CategoryView()) {
-                    Text("QUIT")
-                        .frame(width: 100, height: 30)
-                        .foregroundColor(Color.white)
-                        .background(Color.gray)
-                }
-
-                Spacer()
-                VStack{
-                    ZStack{
-                        ProgressTrack()
-                        ProgressBar(counter: counter, countTo: countTo)
-                        Clock(counter: counter, countTo: countTo)
-                    }
-                }.onReceive(timer) { time in
-                    if (counter < countTo) {
-                        counter += 1
-                    } else if (counter == countTo) {
-                        
-                    }
-                }
-            }
-            .padding()
-            Text("\(currentScore)")
-            VStack {
-                if let question = randomQuestion {
-                    Text("\(question.question)")
-                }
-            }
-            .onAppear() {
-                Api().getQuestionsByCategory(category: categoryName) { questions in
-                    self.questions = questions
-                    randomQuestion = questions.randomElement()!
-                    answers = getAnswers(question: randomQuestion!)
-                }
-            }
-            
-            LazyVGrid(columns: answerColumns, spacing: 10) {
-                ForEach(answers, id:\.self) { answer in
-                    NavigationLink(destination: ScoreView(score: 7000, correctAnswers: 7, totalAnswers: 10)) {
-                        Text("\(answer)")
-                            .padding()
-                            .frame(width: 175)
-                            .foregroundColor(Color.white)
-                            .background(Color.gray)
-                    }
-                    .navigationBarHidden(true)
-                }
-            }
-            .padding()
-            HStack {
-                LazyVGrid(columns: lifelineColumns, spacing: 20) {
-                    ForEach(lifelineData, id:\.self) {_text in
-                        NavigationLink(destination: ScoreView(score: 7000, correctAnswers: 7, totalAnswers: 10)) {
-                            Text("LIFELINE")
-                                .frame(width: 90, height: 30)
+        ZStack {
+            if !isDone {
+                VStack {
+                    HStack {
+                        NavigationLink(destination: CategoryView()) {
+                            Text("QUIT")
+                                .frame(width: 100, height: 30)
                                 .foregroundColor(Color.white)
                                 .background(Color.gray)
                         }
-                        .navigationBarHidden(true)
+                        
+                        Spacer()
+                        VStack{
+                            ZStack{
+                                ProgressTrack()
+                                ProgressBar(counter: counter, countTo: countTo)
+                                Clock(counter: counter, countTo: countTo)
+                            }
+                        }.onReceive(timer) { time in
+                            if (counter < countTo) {
+                                counter += 1
+                            } else if (counter == countTo) {
+                                isDone = true
+                            }
+                        }
+                    }
+                    .padding()
+                    Text(verbatim: "\(currentScore)")
+                    VStack {
+                        if let question = randomQuestion {
+                            Text("\(question.question)")
+                        }
+                    }
+                    .onAppear() {
+                        if questions.isEmpty {
+                            isDone = true
+                            return
+                        }
+                        randomQuestion = questions.removeFirst()
+                        print(questions)
+                        answers = getAnswers(question: randomQuestion!)
+                    }
+                    
+                    LazyVGrid(columns: answerColumns, spacing: 10) {
+                        ForEach(answers.sorted(by: >), id:\.key) { answer, correct in
+                            NavigationLink(destination: QuizQuestionsView(questions: $questions, isDone: $isDone, currentScore: $currentScore, correctAnswerCount: $correctAnswerCount).onAppear {
+                                if correct == "true" {
+                                    currentScore += 1000
+                                    correctAnswerCount += 1
+                                }
+                            }) {
+                                Text("\(answer)")
+                                    .padding()
+                                    .frame(width: 175)
+                                    .foregroundColor(Color.white)
+                                    .background(Color.gray)
+                            }
+                            .navigationBarHidden(true)
+                        }
+                    }
+                    .padding()
+                    HStack {
+                        LazyVGrid(columns: lifelineColumns, spacing: 20) {
+                            ForEach(lifelineData, id:\.self) {_text in
+                                NavigationLink(destination: ScoreView(score: $currentScore, correctAnswerCount: $correctAnswerCount, totalAnswers: 10)) {
+                                    Text("LIFELINE")
+                                        .frame(width: 90, height: 30)
+                                        .foregroundColor(Color.white)
+                                        .background(Color.gray)
+                                }
+                                .navigationBarHidden(true)
+                            }
+                        }
+                        .padding()
                     }
                 }
-                .padding()
+            } else {
+                ScoreView(score: $currentScore, correctAnswerCount: $correctAnswerCount, totalAnswers: 10)
             }
         }
     }
 }
 
+
 struct QuizQuestionsView_Previews: PreviewProvider {
     static var previews: some View {
-        QuizQuestionsView(answers: [], categoryName: "Linux")
+        QuizQuestionsView(questions: .constant([]), isDone: .constant(false), currentScore: .constant(0), correctAnswerCount: .constant(0))
     }
 }

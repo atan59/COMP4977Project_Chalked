@@ -56,24 +56,50 @@ class Api : ObservableObject{
         }
         URLSession.shared.dataTask(with: url) { data, response, error in
             let questions = try! JSONDecoder().decode([Question].self, from: data!)
-//            print(questions)
             DispatchQueue.main.async {
                 completion(questions)
             }
         }.resume()
     }
     
-    func getQuestionsByCategory(category: String, completion:@escaping ([Question]) -> ()) {
-        guard let url = URL(string: "https://quizapi.io/api/v1/questions?apiKey=\(apiKey)&tags=\(category)") else {
+    func getQuestionsByCategory(tag: String, completion:@escaping ([Question]) -> ()) {
+        guard let url = URL(string: "https://quizapi.io/api/v1/questions?apiKey=\(apiKey)&tags=\(tag)&limit=10") else {
             print("Invalid url...")
             return
         }
         URLSession.shared.dataTask(with: url) { data, response, error in
             let questions = try! JSONDecoder().decode([Question].self, from: data!)
-//            print(questions)
+            //            print(questions)
             DispatchQueue.main.async {
                 completion(questions)
             }
         }.resume()
     }
 }
+
+func getAnswers(question: Question) -> [String:String] {
+    var answers: [String:String] = [:]
+    let answersMirror = Mirror(reflecting: question.answers)
+    let boolMirror = Mirror(reflecting: question.correct_answers)
+    var tempAnswersArr = [String]()
+    var tempBoolArr = [String]()
+    
+    for (_, child) in answersMirror.children.enumerated() {
+        if let val = child.value as? String {
+            tempAnswersArr.append(val)
+        }
+    }
+    
+    for (_, child) in boolMirror.children.enumerated() {
+        if let val = child.value as? String {
+            tempBoolArr.append(val)
+        }
+    }
+    
+    for n in 0...tempAnswersArr.count - 1 {
+        answers[tempAnswersArr[n]] = tempBoolArr[n]
+    }
+    
+    return answers
+}
+
