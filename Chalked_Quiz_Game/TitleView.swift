@@ -11,7 +11,7 @@ struct TitleView: View {
     var body: some View {
         VStack {
             RemoteImage(url: "https://cdn.discordapp.com/attachments/883469381085036617/913236363837583381/Screen_Shot_2021-11-24_at_5.11.10_PM.png")
-                .clipShape(Circle())
+                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 250, height: 250)
             Text("Who Wants To Be A Programmer?")

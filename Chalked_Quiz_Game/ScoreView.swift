@@ -18,6 +18,7 @@ struct ScoreView: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255))
+                .padding(.bottom, 50.0)
             VStack {
                 Text("SCORE")
                     .font(.title2)
@@ -38,19 +39,18 @@ struct ScoreView: View {
             .background(Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255))
             HStack{
                 NavigationLink(destination: TitleView()) {
-                    Text("Home")
+                    Text("HOME")
                         .fontWeight(.bold)
-                        .frame(width: 70, height: 50)
+                        .frame(width: 95, height: 50)
                         .foregroundColor(Color.white)
                         .background(Color(red: 72 / 255, green: 169 / 255, blue: 166 / 255))
                         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                        .padding()
                 }
                 .navigationBarHidden(true)
                 NavigationLink(destination: CategoryView()) {
                     Text("PLAY AGAIN?")
                         .fontWeight(.bold)
-                        .frame(width: 165, height: 50)
+                        .frame(width: 150, height: 50)
                         .foregroundColor(Color.white)
                         .background(Color(red: 72 / 255, green: 200 / 255, blue: 166 / 255))
                         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
@@ -59,14 +59,17 @@ struct ScoreView: View {
             }
             .padding()
             if (correctAnswerCount < 5) {
+                // Pepega
                 RemoteImage(url: "https://cdn.discordapp.com/emojis/883471964960878643.png?size=240")
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 250, height: 250)
             } else if (correctAnswerCount > 5 && correctAnswerCount <= 7) {
+                // Hypers
                 RemoteImage(url: "https://cdn.discordapp.com/emojis/883474617484841011.png?size=240")
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 250, height: 250)
             } else if (correctAnswerCount > 7) {
+                // Poggies
                 RemoteImage(url: "https://cdn.discordapp.com/emojis/890839419626606593.png?size=240")
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 250, height: 250)

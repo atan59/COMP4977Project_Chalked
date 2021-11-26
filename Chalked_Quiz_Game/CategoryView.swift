@@ -30,8 +30,9 @@ struct CategoryView: View {
         ScrollView(.vertical) {
             VStack {
                 Text("CHOOSE A CATEGORY")
-                    .font(.title)
+                    .font(.largeTitle)
                     .fontWeight(.bold)
+                    .foregroundColor(Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255))
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(tags, id: \.self) {
                         tag in NavigationLink(destination: QuizBeginView(tagName: "\(tag)")) {

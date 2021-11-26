@@ -14,6 +14,7 @@ struct QuizQuestionsView: View {
     @Binding var isDone: Bool
     @Binding var currentScore: Int
     @Binding var correctAnswerCount: Int
+    @State private var timerStop: Bool = false
     
     let answerColumns = [
         GridItem(.adaptive(minimum: 150))
@@ -52,10 +53,12 @@ struct QuizQuestionsView: View {
                                 Clock(counter: counter, countTo: countTo)
                             }
                         }.onReceive(timer) { time in
-                            if (counter < countTo) {
-                                counter += 1
-                            } else if (counter == countTo) {
-                                isDone = true
+                            if (!timerStop) {
+                                if (counter < countTo) {
+                                    counter += 1
+                                } else if (counter == countTo) {
+                                    isDone = true
+                                }
                             }
                         }
                     }
@@ -86,6 +89,7 @@ struct QuizQuestionsView: View {
                     LazyVGrid(columns: answerColumns, spacing: 10) {
                         ForEach(answers.sorted(by: >), id:\.key) { answer, correct in
                             NavigationLink(destination: QuizQuestionsView(questions: $questions, isDone: $isDone, currentScore: $currentScore, correctAnswerCount: $correctAnswerCount).onAppear {
+                                self.timerStop = true
                                 if correct == "true" {
                                     currentScore += 1000
                                     correctAnswerCount += 1
