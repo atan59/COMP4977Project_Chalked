@@ -18,6 +18,15 @@ struct ScoreView: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255))
+                .frame(width: 350, height: 50)
+                .background(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255), lineWidth: 5)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(Color.white)
+                        )
+                )
                 .padding(.bottom, 50.0)
             VStack {
                 Text("SCORE")
@@ -37,6 +46,7 @@ struct ScoreView: View {
             .frame(width: 250, height: 250)
             .foregroundColor(Color.white)
             .background(Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255))
+            .shadow(color: Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255), radius: 5, x: 5, y: 5)
             HStack{
                 NavigationLink(destination: TitleView()) {
                     Text("HOME")
@@ -45,6 +55,7 @@ struct ScoreView: View {
                         .foregroundColor(Color.white)
                         .background(Color(red: 72 / 255, green: 169 / 255, blue: 166 / 255))
                         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                        .shadow(color: Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255), radius: 5, x: 5, y: 5)
                 }
                 .navigationBarHidden(true)
                 NavigationLink(destination: CategoryView()) {
@@ -54,25 +65,41 @@ struct ScoreView: View {
                         .foregroundColor(Color.white)
                         .background(Color(red: 72 / 255, green: 200 / 255, blue: 166 / 255))
                         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                        .shadow(color: Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255), radius: 5, x: 5, y: 5)
                 }
                 .navigationBarHidden(true)
             }
             .padding()
-            if (correctAnswerCount < 5) {
+            if (correctAnswerCount == 0) {
+                // Pepehands
+                RemoteImage(url: "https://cdn.discordapp.com/emojis/756273392746758215.png?size=240")
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 250, height: 250)
+                    .shadow(color: Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255), radius: 5, x: 5, y: 5)
+            } else if (correctAnswerCount >= 1 && correctAnswerCount < 5) {
                 // Pepega
                 RemoteImage(url: "https://cdn.discordapp.com/emojis/883471964960878643.png?size=240")
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 250, height: 250)
+                    .shadow(color: Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255), radius: 5, x: 5, y: 5)
             } else if (correctAnswerCount > 5 && correctAnswerCount <= 7) {
                 // Hypers
                 RemoteImage(url: "https://cdn.discordapp.com/emojis/883474617484841011.png?size=240")
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 250, height: 250)
-            } else if (correctAnswerCount > 7) {
+                    .shadow(color: Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255), radius: 5, x: 5, y: 5)
+            } else if (correctAnswerCount >= 8 && correctAnswerCount < 10) {
                 // Poggies
                 RemoteImage(url: "https://cdn.discordapp.com/emojis/890839419626606593.png?size=240")
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 250, height: 250)
+                    .shadow(color: Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255), radius: 5, x: 5, y: 5)
+            } else if (correctAnswerCount == 10) {
+                // Poggies
+                RemoteImage(url: "https://cdn.discordapp.com/emojis/913920741697794088.png?size=240")
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 250, height: 250)
+                    .shadow(color: Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255), radius: 5, x: 5, y: 5)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -83,6 +110,6 @@ struct ScoreView: View {
 
 struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreView(score: .constant(1000), correctAnswerCount: .constant(1), totalAnswers: 10)
+        ScoreView(score: .constant(1000), correctAnswerCount: .constant(10), totalAnswers: 10)
     }
 }

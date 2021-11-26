@@ -38,10 +38,11 @@ struct QuizQuestionsView: View {
                             Text("QUIT")
                                 .font(.title2)
                                 .fontWeight(.bold)
-                                .frame(width: 100, height: 60)
+                                .frame(width: 100, height: 50)
                                 .foregroundColor(Color.white)
                                 .background(Color(red: 72 / 255, green: 169 / 255, blue: 166 / 255))
                                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                                .shadow(color: Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255), radius: 5, x: 5, y: 5)
                         }
                         .navigationBarHidden(true)
                         
@@ -49,8 +50,10 @@ struct QuizQuestionsView: View {
                         VStack{
                             ZStack{
                                 ProgressTrack()
+                                    .shadow(color: Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255), radius: 5, x: 5, y: 5)
                                 ProgressBar(counter: counter, countTo: countTo)
                                 Clock(counter: counter, countTo: countTo)
+                                    .shadow(color: Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255), radius: 5, x: 5, y: 5)
                             }
                         }.onReceive(timer) { time in
                             if (!timerStop) {
@@ -67,6 +70,15 @@ struct QuizQuestionsView: View {
                         .font(.title2)
                         .fontWeight(.bold)
                         .foregroundColor(Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255))
+                        .frame(width: 150, height: 45)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color(red: 66 / 255, green: 129 / 255, blue: 164 / 255), lineWidth: 5)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .fill(Color.white)
+                                )
+                        )
                     VStack {
                         if let question = randomQuestion {
                             Text("\(question.question)")
@@ -93,6 +105,8 @@ struct QuizQuestionsView: View {
                                 if correct == "true" {
                                     currentScore += 1000
                                     correctAnswerCount += 1
+                                } else {
+                                    isDone = true
                                 }
                             }) {
                                 Text("\(answer)")
